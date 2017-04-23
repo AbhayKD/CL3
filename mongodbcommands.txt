@@ -1,0 +1,108 @@
+>use mydb
+switched to db mydb
+
+>show dbs
+local      0.78125GB
+mydb       0.23012GB
+test       0.23012GB
+>
+
+>use mydb
+switched to db mydb
+>db.dropDatabase()
+>{ "dropped" : "mydb", "ok" : 1 }
+>
+
+In MongoDB, you don't need to create collection. MongoDB creates collection automatically, when you insert some document.
+
+>db.tutorialspoint.insert({"name" : "tutorialspoint"})
+>show collections
+mycol
+mycollection
+system.indexes
+tutorialspoint
+>
+
+db.COLLECTION_NAME.drop()
+
+>db.mycol.insert({
+   _id: ObjectId(7df78ad8902c),
+   title: 'MongoDB Overview', 
+   description: 'MongoDB is no sql database',
+   by: 'tutorials point',
+   url: 'http://www.tutorialspoint.com',
+   tags: ['mongodb', 'database', 'NoSQL'],
+   likes: 100
+})
+
+//multiple collecrtion insertion operation
+>db.post.insert([
+   {
+      title: 'MongoDB Overview', 
+      description: 'MongoDB is no sql database',
+      by: 'tutorials point',
+      url: 'http://www.tutorialspoint.com',
+      tags: ['mongodb', 'database', 'NoSQL'],
+      likes: 100
+   },
+	
+   {
+      title: 'NoSQL Database', 
+      description: 'NoSQL database doesn't have tables',
+      by: 'tutorials point',
+      url: 'http://www.tutorialspoint.com',
+      tags: ['mongodb', 'database', 'NoSQL'],
+      likes: 20, 
+      comments: [	
+         {
+            user:'user1',
+            message: 'My first comment',
+            dateCreated: new Date(2013,11,10,2,35),
+            like: 0 
+         }
+      ]
+   }
+])
+
+
+>db.mycol.find().pretty()
+
+//can use and inplace of or
+>db.mycol.find(
+   {
+      $or: [
+         {key1: value1}, {key2:value2}
+      ]
+   }
+).pretty()
+
+
+//update
+>db.mycol.update({'title':'MongoDB Overview'},{$set:{'title':'New MongoDB Tutorial'}})
+
+>db.mycol.remove({'title':'MongoDB Overview'})
+
+>db.mycol.find({},{"title":1,_id:0})
+
+>db.mycol.find({},{"title":1,_id:0}).limit(2)
+
+>db.mycol.find({},{"title":1,_id:0}).sort({"title":-1})
+
+if you want to display a list stating how many tutorials are written by each user, then you will use the following aggregate() method −
+
+> db.mycol.aggregate([{$group : {_id : "$by_user", num_tutorial : {$sum : 1}}}])
+{
+   "result" : [
+      {
+         "_id" : "tutorials point",
+         "num_tutorial" : 2
+      },
+      {
+         "_id" : "Neo4j",
+         "num_tutorial" : 1
+      }
+   ],
+   "ok" : 1
+}
+>
+

@@ -1,0 +1,9 @@
+create new project
+Add activity tag in manifest file
+add java files in firest java sub folder
+add activity_main file first in layout folder
+then again add activity_main file in layout folder this time with change in orientation
+then change strings file in values folder
+then add dimens file in values folder
+then again add dimens file in values folder this time with screen with 820 option
+
