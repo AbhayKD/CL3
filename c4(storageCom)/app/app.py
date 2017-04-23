@@ -1,9 +1,11 @@
+#sudo apt-get install python-qt4
+
 import sys, ui
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 import gcs_client
 
-credentials_file = 'HelloWorld-5b5ab5e9eba6.json'
+credentials_file = 'HelloWorld-6d461bfce8ef.json'
 project_name = 'helloworld-163119'
 
 credentials = gcs_client.Credentials(credentials_file)

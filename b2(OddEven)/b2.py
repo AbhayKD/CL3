@@ -3,6 +3,7 @@
 #python get-pip.py
 #sudo pip install flask
 #sudo pip install bitstring
+#sudo pip install queuelib
 #python a3.py in the same folder of code
 
 import threading,queue
