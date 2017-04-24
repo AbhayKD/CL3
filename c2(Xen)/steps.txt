@@ -1,0 +1,4 @@
+1) sudo apt-get install qemu-kvm libvirt-bin bridge-utils virt-manager
+2) sudo useradd abhz -G libvirtd
+3) virsh -c qemu:///system list
+4) sudo virt-manager
